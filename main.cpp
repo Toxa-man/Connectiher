@@ -1,11 +1,12 @@
-#include "mainwindow.h"
+#include "View/mainwindow.h"
 #include <QApplication>
+#include "Controller/maincontroller.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    MainController *mainController = new MainController;
+    mainController->startAll();
 
     return a.exec();
 }

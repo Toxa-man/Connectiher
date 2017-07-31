@@ -24,8 +24,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+    Network/network.cpp \
+    Model/room.cpp \
+    View/mainwindow.cpp \
+    Controller/settings.cpp \
+    Controller/maincontroller.cpp \
+    Model/model.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += \
+    Network/network.h \
+    Model/room.h \
+    View/mainwindow.h \
+    Controller/settings.h \
+    Controller/maincontroller.h \
+    Model/model.h
 
-FORMS    += mainwindow.ui
+FORMS    += View/mainwindow.ui
