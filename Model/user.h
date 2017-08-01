@@ -13,7 +13,7 @@ protected:
 
 };
 #define CURRENT_USER CurrentUser::getInstance()
-class CurrentUser : User
+class CurrentUser : public User
 {
 public:
     static CurrentUser* getInstance();

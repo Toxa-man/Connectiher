@@ -6,12 +6,13 @@
 #include <QVector>
 #include "Model/room.h"
 
-class Model : public QObject
+class DataModel : public QObject
 {
     Q_OBJECT
 public:
-    explicit Model(QObject *parent = 0);
-
+    explicit DataModel(QObject *parent = 0);
+    bool haveCreatedRoom(QString roomName);
+    void addNewCreatedRoom(Room newRoom);
 
 private:
     QVector<Room> ConnectedRooms;

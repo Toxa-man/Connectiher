@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <Controller/settings.h>
+#include "Controller/settings.h"
 #include <QDebug>
+#include "Model/room.h"
 
 namespace Ui {
 class MainWindow;
@@ -22,11 +23,13 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
+    void showErrorMessage(GuiErrorMessage errorType);
+    void newRoomCreated(const Room& newRoom);
 private:
     Ui::MainWindow *ui;
 signals:
     void GuiEventSignal(GuiEvent event);
+    void CreateRoomSignal(QString roomName, QString roomPassword);
 private slots:
     void connectBtnClicked();
     void createBtnClicked();

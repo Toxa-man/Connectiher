@@ -4,14 +4,23 @@
 #include <QObject>
 #include "Model/user.h"
 #include <QVector>
+#include <QString>
 
-class Room : public QObject
+class Room
 {
-    Q_OBJECT
+
 public:
-    explicit Room(QObject *parent = 0);
+    Room();
+    Room(QString RoomName, QString RoomPassword = "", quint16 port = 0);
+    friend bool operator ==(const Room& left, const Room& right);
+    User *getRoomAdministrator() const;
+    void setRoomAdministrator(User *value);
+
 private:
-    User RoomAdministrator;
+    QString roomName;
+    QString roomPassword;
+    quint16 port;
+    User* RoomAdministrator;
     QVector<User> Users;
 signals:
 

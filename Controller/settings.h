@@ -3,6 +3,7 @@
 
 #include <QObject>
 
+enum GuiErrorMessage{None, CreatingRoomExists, CantCreateRoom};
 
 class Settings : public QObject
 {

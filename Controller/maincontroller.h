@@ -6,6 +6,9 @@
 #include <QEvent>
 #include <QDebug>
 #include "View/mainwindow.h"
+#include "Model/model.h"
+#include "Controller/settings.h"
+#include "Model/user.h"
 
 class MainController : public QObject
 {
@@ -16,10 +19,12 @@ public:
 private:
     NetworkManager *Network;
     MainWindow *mainWindow;
+    DataModel *Model;
 signals:
 
 public slots:
     void GuiEventSlot(GuiEvent event);
+    void createRoomSlot(QString roomName, QString roomPassword);
 };
 
 #endif // MAINCONTROLLER_H

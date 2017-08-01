@@ -1,6 +1,25 @@
 #include "room.h"
 
-Room::Room(QObject *parent) : QObject(parent)
+Room::Room()
 {
 
+}
+
+Room::Room(QString RoomName, QString RoomPassword, quint16 port):roomName(RoomName), roomPassword(RoomPassword), port(port)
+{
+}
+
+User *Room::getRoomAdministrator() const
+{
+    return RoomAdministrator;
+}
+
+void Room::setRoomAdministrator(User *value)
+{
+    RoomAdministrator = value;
+}
+
+bool operator ==(const Room& left, const Room &right)
+{
+    return right.roomName == left.roomName;
 }
