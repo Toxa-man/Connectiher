@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QString>
+#include <QVector>
+#include "Model/room.h"
 
 class Model : public QObject
 {
@@ -10,11 +12,10 @@ class Model : public QObject
 public:
     explicit Model(QObject *parent = 0);
 
-    QString getUserName() const;
-    void setUserName(const QString &value);
 
 private:
-    QString userName;
+    QVector<Room> ConnectedRooms;
+    QVector<Room> CreatedRooms;
 signals:
 
 public slots:

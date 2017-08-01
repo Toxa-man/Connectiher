@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     View/mainwindow.cpp \
     Controller/settings.cpp \
     Controller/maincontroller.cpp \
-    Model/model.cpp
+    Model/model.cpp \
+    Model/user.cpp
 
 HEADERS  += \
     Network/network.h \
@@ -37,6 +38,7 @@ HEADERS  += \
     View/mainwindow.h \
     Controller/settings.h \
     Controller/maincontroller.h \
-    Model/model.h
+    Model/model.h \
+    Model/user.h
 
 FORMS    += View/mainwindow.ui
