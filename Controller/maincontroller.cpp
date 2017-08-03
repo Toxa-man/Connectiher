@@ -52,5 +52,7 @@ void MainController::SendMessageSlot(ChatMessage message)
 
 void MainController::MessageSendingResult()
 {
+    if (SendMessageWatcher->result() == SendMessageResponses::Success){ //TODO: push message to vector, mark it as sended in gui
 
+    }
 }
