@@ -23,8 +23,8 @@ private:
 signals:
 
 public slots:
-    void GuiEventSlot(GuiEvent event);
     void createRoomSlot(QString roomName, QString roomPassword);
+    void SendMessageSlot(ChatMessage message);
 };
 
 #endif // MAINCONTROLLER_H

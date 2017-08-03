@@ -28,8 +28,8 @@ public:
 private:
     Ui::MainWindow *ui;
 signals:
-    void GuiEventSignal(GuiEvent event);
     void CreateRoomSignal(QString roomName, QString roomPassword);
+    void SendMessageSignal(ChatMessage message);
 private slots:
     void connectBtnClicked();
     void createBtnClicked();

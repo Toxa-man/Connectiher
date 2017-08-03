@@ -14,9 +14,13 @@ public:
     bool haveCreatedRoom(QString roomName);
     void addNewCreatedRoom(Room newRoom);
 
+    Room getCurrentRoom() const;
+    void setCurrentRoom(const Room &value);
+
 private:
     QVector<Room> ConnectedRooms;
     QVector<Room> CreatedRooms;
+    Room CurrentRoom;
 signals:
 
 public slots:

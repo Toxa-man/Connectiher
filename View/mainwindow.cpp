@@ -26,14 +26,10 @@ void MainWindow::newRoomCreated(const Room &newRoom)
 
 void MainWindow::connectBtnClicked()
 {
-    GuiEvent event;
-    event.key = Settings::Keys::ConnectRoom;
-    event.type = Settings::Types::Clicked;
-    emit GuiEventSignal(event);
 
 }
 
 void MainWindow::createBtnClicked()
 {
-
+    emit CreateRoomSignal(QString("Name"), QString("Pass"));
 }

@@ -11,13 +11,11 @@ void MainController::startAll()
     Model = new DataModel(this);
     mainWindow = new MainWindow();
     mainWindow->show();
-    connect(mainWindow, &MainWindow::GuiEventSignal, this, &MainController::GuiEventSlot);
+    connect(mainWindow, &MainWindow::SendMessageSignal, this, &MainController::SendMessageSlot);
+    connect(mainWindow, &MainWindow::CreateRoomSignal, this, &MainController::createRoomSlot);
 
 }
 
-void MainController::GuiEventSlot(GuiEvent event)
-{
-}
 
 void MainController::createRoomSlot(QString roomName, QString roomPassword)
 {
@@ -42,4 +40,9 @@ void MainController::createRoomSlot(QString roomName, QString roomPassword)
         break;
     }
 
+}
+
+void MainController::SendMessageSlot(ChatMessage message)
+{
+//    if (Model->getCurrentRoom().getRoomType() == Cre) //TODO: make a async call for SenaMwssage func
 }

@@ -15,3 +15,13 @@ void DataModel::addNewCreatedRoom(Room newRoom)
     CreatedRooms.push_back(newRoom);
 }
 
+Room DataModel::getCurrentRoom() const
+{
+    return CurrentRoom;
+}
+
+void DataModel::setCurrentRoom(const Room &value)
+{
+    CurrentRoom = value;
+}
+

@@ -5,6 +5,16 @@
 #include "Model/user.h"
 #include <QVector>
 #include <QString>
+#include <QDateTime>
+
+struct ChatMessage
+{
+    QString authorName;
+    QString messageText;
+    QDateTime sendTime;
+};
+
+enum class RoomType{Created, Connected};
 
 class Room
 {
@@ -16,12 +26,18 @@ public:
     User *getRoomAdministrator() const;
     void setRoomAdministrator(User *value);
 
+    RoomType getRoomType() const;
+    void setRoomType(const RoomType &value);
+
 private:
     QString roomName;
     QString roomPassword;
     quint16 port;
     User* RoomAdministrator;
     QVector<User> Users;
+    QVector<ChatMessage> ChatMessage;
+    RoomType roomType;
+
 signals:
 
 public slots:

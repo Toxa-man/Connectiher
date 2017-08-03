@@ -19,6 +19,16 @@ void Room::setRoomAdministrator(User *value)
     RoomAdministrator = value;
 }
 
+RoomType Room::getRoomType() const
+{
+    return roomType;
+}
+
+void Room::setRoomType(const RoomType &value)
+{
+    roomType = value;
+}
+
 bool operator ==(const Room& left, const Room &right)
 {
     return right.roomName == left.roomName;

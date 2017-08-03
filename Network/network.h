@@ -10,6 +10,7 @@
 
 enum class ConnectResponses{Success, Timeout, WrongPassword, Banned, Overloaded};
 enum class CreateResponses{Success, Failed};
+enum class SendMessageResponses{Success, Failed};
 class IP4
 {
 public:
@@ -33,6 +34,7 @@ public:
     explicit NetworkManager(QObject *parent = 0);
     QPair<ConnectResponses, Room*> connectToRoom(IP4 ip4, quint16 port, QString password); //return code of attempt and pointer to Room, nullptr if failed to connect
     QPair<CreateResponses, quint16> createRoom(); //return response and port if successed
+    SendMessageResponses sendMessage(const ChatMessage& message, Room RoomToSend);
 signals:
     void tryingToConnect(User user, quint16 port);
 
