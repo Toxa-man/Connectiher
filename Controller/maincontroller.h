@@ -9,6 +9,10 @@
 #include "Model/model.h"
 #include "Controller/settings.h"
 #include "Model/user.h"
+#include <QThread>
+#include <QFutureWatcher>
+#include <QFuture>
+#include <QtConcurrent/QtConcurrent>
 
 class MainController : public QObject
 {
@@ -20,11 +24,13 @@ private:
     NetworkManager *Network;
     MainWindow *mainWindow;
     DataModel *Model;
+    QFutureWatcher<SendMessageResponses> *SendMessageWatcher = new QFutureWatcher<SendMessageResponses>();
 signals:
 
 public slots:
     void createRoomSlot(QString roomName, QString roomPassword);
     void SendMessageSlot(ChatMessage message);
+    void MessageSendingResult();
 };
 
 #endif // MAINCONTROLLER_H

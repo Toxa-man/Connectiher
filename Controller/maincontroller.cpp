@@ -44,5 +44,12 @@ void MainController::createRoomSlot(QString roomName, QString roomPassword)
 
 void MainController::SendMessageSlot(ChatMessage message)
 {
-//    if (Model->getCurrentRoom().getRoomType() == Cre) //TODO: make a async call for SenaMwssage func
+    connect(SendMessageWatcher, SIGNAL(finished()), this, SLOT(MessageSendingResult()));
+    QFuture<SendMessageResponses> future = QtConcurrent::run(this->Network, &NetworkManager::sendMessageToRoom , message , Model->getCurrentRoom());
+    SendMessageWatcher->setFuture(future);
+}
+
+void MainController::MessageSendingResult()
+{
+
 }
