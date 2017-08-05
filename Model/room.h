@@ -6,6 +6,8 @@
 #include <QVector>
 #include <QString>
 #include <QDateTime>
+#include <QBuffer>
+#include <QPair>
 
 struct ChatMessage
 {
@@ -28,6 +30,7 @@ public:
 
     RoomType getRoomType() const;
     void setRoomType(const RoomType &value);
+    void setUserAudioData(QString name, const QByteArray& audioData);
 
 private:
     QString roomName;

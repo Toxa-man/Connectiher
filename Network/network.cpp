@@ -15,3 +15,14 @@ SendMessageResponses NetworkManager::sendMessageToRoom(const ChatMessage &messag
 {
 
 }
+
+void NetworkManager::sendAudioDataToUsers(const Room &room)
+{
+    //TODO: implement method. It should send all users aduio data to each user except from whom data was recieved.
+}
+
+Room NetworkManager::getAudioDataFromNetwork(const Room& currentRoom)
+{
+    //TODO: implement method. It should return all avilable audio data
+    return Room();
+}

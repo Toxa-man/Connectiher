@@ -31,7 +31,8 @@ SOURCES += main.cpp\
     Controller/settings.cpp \
     Controller/maincontroller.cpp \
     Model/model.cpp \
-    Model/user.cpp
+    Model/user.cpp \
+    Controller/audiocontroller.cpp
 
 HEADERS  += \
     Network/network.h \
@@ -40,6 +41,7 @@ HEADERS  += \
     Controller/settings.h \
     Controller/maincontroller.h \
     Model/model.h \
-    Model/user.h
+    Model/user.h \
+    Controller/audiocontroller.h
 
 FORMS    += View/mainwindow.ui

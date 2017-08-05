@@ -17,9 +17,9 @@
    <widget class="QPushButton" name="connectBtn">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>380</y>
-      <width>349</width>
+      <x>120</x>
+      <y>169</y>
+      <width>84</width>
       <height>23</height>
      </rect>
     </property>
@@ -27,12 +27,12 @@
      <string>Подключиться</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="CreateBtn">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>410</y>
-      <width>349</width>
+      <x>120</x>
+      <y>140</y>
+      <width>75</width>
       <height>23</height>
      </rect>
     </property>

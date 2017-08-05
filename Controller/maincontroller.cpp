@@ -11,8 +11,11 @@ void MainController::startAll()
     Model = new DataModel(this);
     mainWindow = new MainWindow();
     mainWindow->show();
+    Audio = new AudioController(this);
     connect(mainWindow, &MainWindow::SendMessageSignal, this, &MainController::SendMessageSlot);
     connect(mainWindow, &MainWindow::CreateRoomSignal, this, &MainController::createRoomSlot);
+    connect(SendMessageWatcher, SIGNAL(finished()), this, SLOT(MessageSendingResult()));
+
 
 }
 
@@ -45,7 +48,6 @@ void MainController::createRoomSlot(QString roomName, QString roomPassword)
 
 void MainController::SendMessageSlot(ChatMessage message)
 {
-    connect(SendMessageWatcher, SIGNAL(finished()), this, SLOT(MessageSendingResult()));
     QFuture<SendMessageResponses> future = QtConcurrent::run(this->Network, &NetworkManager::sendMessageToRoom , message , Model->getCurrentRoom());
     SendMessageWatcher->setFuture(future);
 }
@@ -55,4 +57,13 @@ void MainController::MessageSendingResult()
     if (SendMessageWatcher->result() == SendMessageResponses::Success){ //TODO: push message to vector, mark it as sended in gui
 
     }
+}
+
+void MainController::AudioProcessingForRoom()  //YARIK::ATTENTION: Main controller method to manage audio
+{
+    Room room = Network->getAudioDataFromNetwork(Model->getCurrentRoom()); //get data from network
+    Audio->pushDataToOutput(room); //push data to audio output
+    QByteArray inputBuffer = Audio->getDataFromDevice(); //get data from device
+    room.setUserAudioData(CURRENT_USER->getUserName(), inputBuffer); //add this data to room
+    Network->sendAudioDataToUsers(room); //send audio to all users
 }

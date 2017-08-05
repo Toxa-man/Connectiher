@@ -24,6 +24,7 @@ public:
     void operator =(const QByteArray& arr);
 private:
     QByteArray data;
+    Room CurrentRoom;
 
 };
 
@@ -35,6 +36,8 @@ public:
     QPair<ConnectResponses, Room*> connectToRoom(IP4 ip4, quint16 port, QString password); //return code of attempt and pointer to Room, nullptr if failed to connect
     QPair<CreateResponses, quint16> createRoom(); //return response and port if successed
     SendMessageResponses sendMessageToRoom(const ChatMessage& message, Room RoomToSend);
+    void sendAudioDataToUsers(const Room& room);
+    Room getAudioDataFromNetwork(const Room &currentRoom);
 signals:
     void tryingToConnect(User user, quint16 port);
 

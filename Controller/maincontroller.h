@@ -13,6 +13,7 @@
 #include <QFutureWatcher>
 #include <QFuture>
 #include <QtConcurrent/QtConcurrent>
+#include "Controller/audiocontroller.h"
 
 class MainController : public QObject
 {
@@ -24,7 +25,9 @@ private:
     NetworkManager *Network;
     MainWindow *mainWindow;
     DataModel *Model;
+    AudioController *Audio; //YARIK::ATTENTION: this is object of your main class, use it in controller if needs
     QFutureWatcher<SendMessageResponses> *SendMessageWatcher = new QFutureWatcher<SendMessageResponses>();
+    void AudioProcessingForRoom();
 signals:
 
 public slots:
