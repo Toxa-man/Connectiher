@@ -19,20 +19,21 @@ void MainController::startAll()
 
 void MainController::createRoomSlot(QString roomName, QString roomPassword)
 {
-    if (Model->haveCreatedRoom(roomName)){
-        mainWindow->showErrorMessage(GuiErrorMessage::CreatingRoomExists);
+    if (Model->haveCreatedRoom(roomName)){ //check this room: exist or not?
+        mainWindow->showErrorMessage(GuiErrorMessage::CreatingRoomExists);//if exist, show error
         return;
     }
-    QPair<CreateResponses, quint16> response = Network->createRoom();
-    switch (response.first) {
-    case CreateResponses::Success:{
-        Room newRoom(roomName, roomPassword, response.second);
-        newRoom.setRoomAdministrator(CURRENT_USER);
-        Model->addNewCreatedRoom(newRoom);
-        mainWindow->newRoomCreated(newRoom);
+    QPair<CreateResponses, quint16> response = Network->createRoom();//if not, create new
+    switch (response.first) {//check status
+    case CreateResponses::Success:{//if succ, create new
+        Room newRoom(roomName, roomPassword, response.second); //parame
+        newRoom.setRoomAdministrator(CURRENT_USER); //host == admin
+        newRoom.setRoomType(RoomType::Created);// set type of room
+        Model->addNewCreatedRoom(newRoom); //add room to a model
+        mainWindow->newRoomCreated(newRoom); // window reaction on new room
         break;
     }
-    case CreateResponses::Failed:{
+    case CreateResponses::Failed:{// if fail, show error
         mainWindow->showErrorMessage(GuiErrorMessage::CantCreateRoom);
         break;
     }
