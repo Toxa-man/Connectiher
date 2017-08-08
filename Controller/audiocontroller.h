@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QBuffer>
 #include <Model/room.h>
-#include <QAudioInput> //ANTON::ATTENTION:: QAudioInput/Output connected with QObject, isn't it?
+#include <QAudioInput> //ANTON::ATTENTION:: QAudioInput/Output connected with QObject, isn't it? || Anton::Answer: Don't understand, this classes probably are the childs of QObject, see the documentation
 #include <QAudioOutput>
 #include <QDebug>
 
@@ -14,14 +14,14 @@ class AudioController : public QObject //YARIK::ATTENTION: This is your main cla
 public:
     explicit AudioController(QObject *parent = 0);
     QByteArray getDataFromDevice();
-    void pushDataToOutput(const Room& room);
+    void pushDataToOutput(const QVector<QPair<QString, QByteArray>>& audioData); // first - name, second - audio data
 signals:
 private:
     QBuffer inputAudioBuffer;
     QAudioInput *audioInput;
     QAudioDeviceInfo inputDevice;
     QBuffer outputAudioBuffer;
-    QAudioInput *audioOutput;
+    QAudioOutput *audioOutput;
     QAudioDeviceInfo outputDevice;
 public slots:
 };

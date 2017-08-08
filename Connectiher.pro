@@ -7,6 +7,7 @@
 QT       += core gui
 
 QT += concurrent
+QT += multimedia
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Connectiher
@@ -32,7 +33,8 @@ SOURCES += main.cpp\
     Controller/maincontroller.cpp \
     Model/model.cpp \
     Model/user.cpp \
-    Controller/audiocontroller.cpp
+    Controller/audiocontroller.cpp \
+    View/createroomdialog.cpp
 
 HEADERS  += \
     Network/network.h \
@@ -42,6 +44,8 @@ HEADERS  += \
     Controller/maincontroller.h \
     Model/model.h \
     Model/user.h \
-    Controller/audiocontroller.h
+    Controller/audiocontroller.h \
+    View/createroomdialog.h
 
-FORMS    += View/mainwindow.ui
+FORMS    += View/mainwindow.ui \
+    View/createroomdialog.ui

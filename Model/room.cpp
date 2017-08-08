@@ -36,6 +36,18 @@ void Room::setUserAudioData(QString name, const QByteArray &audioData) //TODO: m
     }
 }
 
+QVector<QPair<QString, QByteArray>> Room::getRoomAudioData()
+{
+    QVector<QPair<QString, QByteArray>> data;
+    for (User it: Users){
+        data.push_back(qMakePair(it.getUserName(), it.getAudioData()));
+    }
+
+    return data;
+
+
+}
+
 bool operator ==(const Room& left, const Room &right)
 {
     return right.roomName == left.roomName;

@@ -26,7 +26,7 @@ private:
     MainWindow *mainWindow;
     DataModel *Model;
     AudioController *Audio; //YARIK::ATTENTION: this is object of your main class, use it in controller if needs
-    QFutureWatcher<SendMessageResponses> *SendMessageWatcher = new QFutureWatcher<SendMessageResponses>();
+    QFutureWatcher<SendMessageResponses> *SendMessageWatcher = new QFutureWatcher<SendMessageResponses>(); //TODO: May be need to remove
     void AudioProcessingForRoom();
 signals:
 

@@ -62,8 +62,9 @@ void MainController::MessageSendingResult()
 void MainController::AudioProcessingForRoom()  //YARIK::ATTENTION: Main controller method to manage audio
 {
     Room room = Network->getAudioDataFromNetwork(Model->getCurrentRoom()); //get data from network
-    Audio->pushDataToOutput(room); //push data to audio output
+    Audio->pushDataToOutput(room.getRoomAudioData()); //push data to audio output
     QByteArray inputBuffer = Audio->getDataFromDevice(); //get data from device
     room.setUserAudioData(CURRENT_USER->getUserName(), inputBuffer); //add this data to room
     Network->sendAudioDataToUsers(room); //send audio to all users
+
 }

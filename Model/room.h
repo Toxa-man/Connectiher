@@ -32,6 +32,8 @@ public:
     void setRoomType(const RoomType &value);
     void setUserAudioData(QString name, const QByteArray& audioData);
 
+    QVector<QPair<QString, QByteArray>> getRoomAudioData(); //first - user name, second - data;
+
 private:
     QString roomName;
     QString roomPassword;
