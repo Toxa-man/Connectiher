@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 QT += concurrent
 QT += multimedia
@@ -34,7 +34,8 @@ SOURCES += main.cpp\
     Model/model.cpp \
     Model/user.cpp \
     Controller/audiocontroller.cpp \
-    View/createroomdialog.cpp
+    View/createroomdialog.cpp \
+    Network/serverroom.cpp
 
 HEADERS  += \
     Network/network.h \
@@ -45,7 +46,8 @@ HEADERS  += \
     Model/model.h \
     Model/user.h \
     Controller/audiocontroller.h \
-    View/createroomdialog.h
+    View/createroomdialog.h \
+    Network/serverroom.h
 
 FORMS    += View/mainwindow.ui \
     View/createroomdialog.ui

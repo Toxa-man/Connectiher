@@ -4,11 +4,11 @@
 #include <QObject>
 #include <QBuffer>
 #include <Model/room.h>
-#include <QAudioInput> //ANTON::ATTENTION:: QAudioInput/Output connected with QObject, isn't it? || Anton::Answer: Don't understand, this classes probably are the childs of QObject, see the documentation
+#include <QAudioInput>
 #include <QAudioOutput>
 #include <QDebug>
 
-class AudioController : public QObject //YARIK::ATTENTION: This is your main class, create and store all needed objects here
+class AudioController : public QObject
 {
     Q_OBJECT
 public:

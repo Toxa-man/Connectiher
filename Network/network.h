@@ -7,6 +7,7 @@
 #include "Model/room.h"
 #include <QByteArray>
 #include "Model/user.h"
+#include "serverroom.h"
 
 enum class ConnectResponses{Success, Timeout, WrongPassword, Banned, Overloaded};
 enum class CreateResponses{Success, Failed};
@@ -38,6 +39,9 @@ public:
     SendMessageResponses sendMessageToRoom(const ChatMessage& message, Room RoomToSend);
     void sendAudioDataToUsers(const Room& room);
     Room getAudioDataFromNetwork(const Room &currentRoom);
+
+private:
+    QVector<ServerRoom> ServerRooms;
 signals:
     void tryingToConnect(User user, quint16 port);
 
