@@ -3,34 +3,59 @@
 AudioController::AudioController(QObject *parent) : QObject(parent)
 {
     QAudioFormat audioFormat;
-    audioFormat.setSampleRate(8000);
+    audioFormat.setSampleRate(44100);
     audioFormat.setChannelCount(1);
-    audioFormat.setSampleSize(8);
+    audioFormat.setSampleSize(16);
     audioFormat.setCodec("audio/pcm");
     audioFormat.setByteOrder(QAudioFormat::LittleEndian);
-    audioFormat.setSampleType(QAudioFormat::UnSignedInt);
+    audioFormat.setSampleType(QAudioFormat::SignedInt);
+
+    QAudioDeviceInfo inputInfo = QAudioDeviceInfo::defaultInputDevice();
+    if (!inputInfo.isFormatSupported(format)) {
+        qWarning() << "Default format for input device is not supported, trying to use the nearest.";
+        format = inputInfo.nearestFormat(format);
+    }
 
     audioInput = new QAudioInput(audioFormat,this);
     audioOutput = new QAudioOutput(audioFormat,this);
+
+    connect(audioInput, &QAudioInput::stateChanged, this, &AudioController::handleInputStateChanging);
+    connect(audioOutput, &QAudioOutput::stateChanged, this, &AudioController::handleOutputStateChanging);
+
+    outputAudioBuffer.open(QBuffer::ReadWrite);
+    inputAudioBuffer.open(QBuffer::ReadWrite);
 
     QAudioDeviceInfo inputDevice = QAudioDeviceInfo::defaultInputDevice();
     QAudioDeviceInfo outputDevice = QAudioDeviceInfo::defaultOutputDevice();
 }
 
-QByteArray AudioController::getDataFromDevice()  //YARIK::ATTENTION: implement this method, it should return data readed from input device (mic, for example)
+QByteArray AudioController::getDataFromDevice()
 {
-    inputAudioBuffer.open(QBuffer::ReadWrite);
     inputAudioBuffer.seek(0);
-    audioInput->start(&inputAudioBuffer); //ANTON::ATTENTION:: when to stop writing data and return them?|| Anton::Answer: You should write to buffer untill this method called. You return the data and then continue writing
+    audioInput->start(&inputAudioBuffer);
     return QByteArray(inputAudioBuffer.data());
 }
 
-void AudioController::pushDataToOutput(const QVector<QPair<QString, QByteArray> > &audioData) //YARIK::ATTENTION: implement this method. It should run over every user in room, get it's audio data and out it to device (dynamics for example)
+void AudioController::pushDataToOutput(const QVector<QPair<QString, QByteArray> > &audioData)
 {
-
-    outputAudioBuffer.open(QBuffer::ReadWrite);
     outputAudioBuffer.seek(0);
-    outputAudioBuffer.setData(nullptr); //ANTON::ATTENTION:: Where to get data? From the previous class? If yes, how? || Anton::Answer: get it from object passed to this method
+    outputAudioBuffer.setData(nullptr);
     audioOutput->start(&outputAudioBuffer);
+}
+
+void AudioController::handleInputStateChanging(QAudio::State state)
+{
+    qDebug() << "New input "  << state;
+    if (audioInput->error() != QAudio::NoError){
+        qWarning() << "Input error : " << audioInput->error();
+    }
+}
+
+void AudioController::handleOutputStateChanging(QAudio::State state)
+{
+    qDebug() << "New output "  << state;
+    if (audioOutput->error() != QAudio::NoError){
+        qWarning() << "Output error : " << audioOutput->error();
+    }
 }
 

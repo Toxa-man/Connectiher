@@ -24,6 +24,9 @@ private:
     QAudioOutput *audioOutput;
     QAudioDeviceInfo outputDevice;
 public slots:
+private slots:
+    void handleInputStateChanging(QAudio::State state);
+    void handleOutputStateChanging(QAudio::State state);
 };
 
 #endif // AUDIOCONTROLLER_H

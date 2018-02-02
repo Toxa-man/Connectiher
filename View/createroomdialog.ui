@@ -50,26 +50,6 @@
      <string>Пароль:</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="RoomNameText">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>30</y>
-      <width>141</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="RoomPasswordText">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>70</y>
-      <width>141</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QPushButton" name="CreateRoomBtn">
     <property name="geometry">
      <rect>
@@ -81,6 +61,26 @@
     </property>
     <property name="text">
      <string>Создать</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>30</y>
+      <width>113</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>70</y>
+      <width>113</width>
+      <height>20</height>
+     </rect>
     </property>
    </widget>
   </widget>
